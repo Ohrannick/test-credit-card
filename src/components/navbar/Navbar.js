@@ -11,7 +11,7 @@ const Navbar = () => {
         <img src={Logo} alt='logo' className='navbar__logo' />
         <div className='navbar__header'>GOLD BANK</div>
         <div className='navbar__login'>
-          <NavLink to='/addform'>Отправить</NavLink>
+          <NavLink to='/card'>Отправить</NavLink>
         </div>
         <div className='navbar__registration'>
           <NavLink to='/registration'>Регистрация</NavLink>

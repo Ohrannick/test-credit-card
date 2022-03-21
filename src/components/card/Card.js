@@ -1,19 +1,21 @@
 import { useState } from 'react';
 
+import { card } from '../../actions/card';
 import Button from '@mui/material/Button';
-import { TextField } from '@mui/material';
-import './AppForm.css';
+// import { TextField } from '@mui/material';
+import './card.css';
+import Input from '../../utils/input/Input';
 
-const AppForm = () => {
+const Card = () => {
   const [cardNumber, setCardNumber] = useState('');
   const [dateExp, setDateExp] = useState('');
   const [cvv, setCvv] = useState('');
   const [amount, setAmount] = useState('1000');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Отправлена форма.');
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log('Отправлена форма.');
+  // };
 
   const validateInput = (input, reg, num = 0) => {
     return num
@@ -36,28 +38,28 @@ const AppForm = () => {
 
   const isEnabled = !colorCard && !colorData && !colorCvv && !colorAmount;
 
-  console.log(isEnabled, colorCard, colorData, colorCvv, colorAmount);
+  // console.log(isEnabled, colorCard, colorData, colorCvv, colorAmount);
   return (
     <div className='form'>
-      <form
-        onSubmit={handleSubmit}
+      <div
+        // onSubmit={handleSubmit}
         className='form__body'
-        action='#'
-        method='post'
+        // action='#'
+        // method='post'
       >
         <h3 className='form__title'>Заполните данные</h3>
         <div className='form__item'>
           <label for='cardNumber' className='form__label'>
             Card Number
           </label>
-          <input
+          <Input
             id='cardNumber'
             type='text'
             name='cardNumber'
-            onChange={(e) => setCardNumber(e.target.value)}
+            setValue={setCardNumber}
             value={cardNumber}
             className={`form__input ${colorCard}`}
-            placeholder='только цифры, длина значения 16'
+            placeholder='Только цифры, длина значения 16'
           />
         </div>
         <div className='form__item-two'>
@@ -65,11 +67,11 @@ const AppForm = () => {
             <label for='dateExp' className='form__label-two'>
               Expiration Date
             </label>
-            <input
+            <Input
               id='dateExp'
               type='text'
               name='dateExp'
-              onChange={(e) => setDateExp(e.target.value)}
+              setValue={setDateExp}
               value={dateExp}
               className={`form__input-two ${colorData}`}
               placeholder='MM/YYYY'
@@ -79,11 +81,11 @@ const AppForm = () => {
             <label for='cvv' className='form__label-two'>
               CVV
             </label>
-            <input
+            <Input
               id='cvv'
               type='text'
               name='cvv'
-              onChange={(e) => setCvv(e.target.value)}
+              setValue={setCvv}
               value={cvv}
               className={`form__input-two ${colorCvv}`}
               placeholder='3 цифры'
@@ -94,25 +96,30 @@ const AppForm = () => {
           <label for='amount' className='form__label'>
             Amount
           </label>
-          <input
+          <Input
             id='amount'
             type='text'
             name='amount'
-            onChange={(e) => setAmount(e.target.value)}
+            setValue={setAmount}
             value={amount}
             className={`form__input ${colorAmount}`}
             placeholder='Сумма, рублях'
           />
         </div>
-        <Button type='submit' variant='contained' disabled={!isEnabled}>
+        <Button
+          type='submit'
+          variant='contained'
+          disabled={!isEnabled}
+          onClick={() => card(cardNumber, dateExp, cvv, amount)}
+        >
           Отправить
         </Button>
         {/* <button disabled={!isEnabled} className='btn'>
           Добавить
         </button> */}
-      </form>
+      </div>
     </div>
   );
 };
 
-export default AppForm;
+export default Card;

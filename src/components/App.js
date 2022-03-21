@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from './navbar/Navbar';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Registration from './regisration/Registration';
-import AppForm from './appform/AppForm';
+import Card from './card/Card';
 
 import './app.scss';
 
@@ -13,7 +13,7 @@ function App() {
         <Navbar />
         <div className='wrap'>
           <Routes>
-            <Route path='/addform' element={<AppForm />} />
+            <Route path='/card' element={<Card />} />
             <Route path='/registration' element={<Registration />} />
           </Routes>
         </div>
