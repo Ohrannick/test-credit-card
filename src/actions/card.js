@@ -9,7 +9,13 @@ export const card = async (cardNumber, dateExp, cvv, amount) => {
       cvv,
       amount,
     });
-    alert(response.data.message);
+
+    alert(
+      'RequestId: ' +
+        response.data.card.id +
+        ', Amount: ' +
+        response.data.card.amount
+    );
   } catch (e) {
     alert(e.response.data.message);
   }

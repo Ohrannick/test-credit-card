@@ -2,20 +2,13 @@ import { useState } from 'react';
 
 import { card } from '../../actions/card';
 import Button from '@mui/material/Button';
-// import { TextField } from '@mui/material';
 import './card.css';
-import Input from '../../utils/input/Input';
 
 const Card = () => {
   const [cardNumber, setCardNumber] = useState('');
   const [dateExp, setDateExp] = useState('');
   const [cvv, setCvv] = useState('');
   const [amount, setAmount] = useState('1000');
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log('Отправлена форма.');
-  // };
 
   const validateInput = (input, reg, num = 0) => {
     return num
@@ -38,25 +31,19 @@ const Card = () => {
 
   const isEnabled = !colorCard && !colorData && !colorCvv && !colorAmount;
 
-  // console.log(isEnabled, colorCard, colorData, colorCvv, colorAmount);
   return (
     <div className='form'>
-      <div
-        // onSubmit={handleSubmit}
-        className='form__body'
-        // action='#'
-        // method='post'
-      >
+      <div className='form__body'>
         <h3 className='form__title'>Заполните данные</h3>
         <div className='form__item'>
           <label for='cardNumber' className='form__label'>
             Card Number
           </label>
-          <Input
+          <input
             id='cardNumber'
             type='text'
             name='cardNumber'
-            setValue={setCardNumber}
+            onChange={(e) => setCardNumber(e.target.value)}
             value={cardNumber}
             className={`form__input ${colorCard}`}
             placeholder='Только цифры, длина значения 16'
@@ -67,11 +54,11 @@ const Card = () => {
             <label for='dateExp' className='form__label-two'>
               Expiration Date
             </label>
-            <Input
+            <input
               id='dateExp'
               type='text'
               name='dateExp'
-              setValue={setDateExp}
+              onChange={(e) => setDateExp(e.target.value)}
               value={dateExp}
               className={`form__input-two ${colorData}`}
               placeholder='MM/YYYY'
@@ -81,11 +68,11 @@ const Card = () => {
             <label for='cvv' className='form__label-two'>
               CVV
             </label>
-            <Input
+            <input
               id='cvv'
               type='text'
               name='cvv'
-              setValue={setCvv}
+              onChange={(e) => setCvv(e.target.value)}
               value={cvv}
               className={`form__input-two ${colorCvv}`}
               placeholder='3 цифры'
@@ -96,11 +83,11 @@ const Card = () => {
           <label for='amount' className='form__label'>
             Amount
           </label>
-          <Input
+          <input
             id='amount'
             type='text'
             name='amount'
-            setValue={setAmount}
+            onChange={(e) => setAmount(e.target.value)}
             value={amount}
             className={`form__input ${colorAmount}`}
             placeholder='Сумма, рублях'
@@ -114,9 +101,6 @@ const Card = () => {
         >
           Отправить
         </Button>
-        {/* <button disabled={!isEnabled} className='btn'>
-          Добавить
-        </button> */}
       </div>
     </div>
   );
